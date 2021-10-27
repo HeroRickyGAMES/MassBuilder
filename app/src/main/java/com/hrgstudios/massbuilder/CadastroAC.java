@@ -38,13 +38,14 @@ public class CadastroAC extends AppCompatActivity {
                 String email = EditEmailc.getText().toString();
                 String senha = EditSenhac.getText().toString();
 
-
+                //e se...
                 if(nome.isEmpty() || email.isEmpty() || senha.isEmpty()){
 
                     Snackbar snackbar = Snackbar.make(v, "Preencha todos os campos!", Snackbar.LENGTH_LONG);
                     snackbar.show();
-                }else{
-
+                }//e se não
+                else{
+                    CadastrarUsuario();
                 }
             }
         });
