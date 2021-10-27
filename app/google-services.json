@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1025333858628",
+    "project_id": "mass-builder-db",
+    "storage_bucket": "mass-builder-db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1025333858628:android:966c3dd8723bb1afab8711",
+        "android_client_info": {
+          "package_name": "com.hrgstudios.massbuilder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1025333858628-1i5ledqjv1qs2cdk84ub212jseqaf5sr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDx-ZDIZHReMI1zLDliznGwq5gCIKTWmsE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1025333858628-1i5ledqjv1qs2cdk84ub212jseqaf5sr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
