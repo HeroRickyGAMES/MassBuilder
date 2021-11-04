@@ -1,5 +1,7 @@
 package com.hrgstudios.massbuilder;
 
+import static com.google.rpc.context.AttributeContext.*;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,6 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.util.GAuthToken;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.rpc.context.AttributeContext;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,12 +39,16 @@ import java.util.Map;
 public class CadastroAC extends AppCompatActivity {
 
     //comentei sobre eles para colocar-los aqui, não sei explicar direito mais fds kkkkk
-    private EditText Editnome, EditEmailc, EditSenhac;
-    private Button Bt_cadastro;
-    private DatabaseReference referencia = FirebaseDatabase.getInstance().getReference("usuario");
+    public EditText Editnome, EditEmailc, EditSenhac;
+    public Button Bt_cadastro;
+    public DatabaseReference referencia = FirebaseDatabase.getInstance().getReference("usuarios");
+    public String uid;
+    public FirebaseUser auth;
+
 
     //Data base
-    private FirebaseDatabase database;
+    public FirebaseDatabase database;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +99,9 @@ public class CadastroAC extends AppCompatActivity {
 
                //Salvar dados do Usuario lá no database
 
+
                SalvarDadosUsuario();
+               FirebaseAuth.getInstance().getUid();
 
 
                Snackbar snackbar = Snackbar.make(v, "Cadastro Realizado com sucesso!", Snackbar.LENGTH_LONG);
@@ -127,10 +137,12 @@ public class CadastroAC extends AppCompatActivity {
 
         String nome = Editnome.getText().toString();
 
-        referencia.child("Nome").setValue(nome);
+        Boolean isfuncionario = false;
 
-        //DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-        //reference.child("usuarios").child("nome").child(nome);
+        String getuID = EditEmailc.getText().toString().replaceAll("\\p{Punct}", "");
+
+        referencia.child(getuID).child("nome").setValue(nome);
+        referencia.child(getuID).child("É funcionario").setValue(isfuncionario);
 
 
     }
