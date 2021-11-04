@@ -39,7 +39,7 @@ import java.util.Map;
 public class CadastroAC extends AppCompatActivity {
 
     //comentei sobre eles para colocar-los aqui, não sei explicar direito mais fds kkkkk
-    public EditText Editnome, EditEmailc, EditSenhac;
+    public EditText Editnome, EditEmailc, EditSenhac, editSobrenome, textIdade;
     public Button Bt_cadastro;
     public DatabaseReference referencia = FirebaseDatabase.getInstance().getReference("usuarios");
     public String uid;
@@ -59,6 +59,8 @@ public class CadastroAC extends AppCompatActivity {
         Editnome = findViewById(R.id.Editnome);
         EditEmailc = findViewById(R.id.EditEmailc);
         EditSenhac = findViewById(R.id.EditSenhac);
+        editSobrenome = findViewById(R.id.editSobrenome);
+        textIdade = findViewById(R.id.textIdade);
 
 
         //ID do botão
@@ -72,9 +74,11 @@ public class CadastroAC extends AppCompatActivity {
                 String nome = Editnome.getText().toString();
                 String email = EditEmailc.getText().toString();
                 String senha = EditSenhac.getText().toString();
+                String Sobrenome = editSobrenome.getText().toString();
+                String Idade = textIdade.getText().toString();
 
                 //e se...
-                if(nome.isEmpty() || email.isEmpty() || senha.isEmpty()){
+                if(nome.isEmpty() || email.isEmpty() || senha.isEmpty() || Sobrenome.isEmpty() || Idade.isEmpty()){
 
                     Snackbar snackbar = Snackbar.make(v, "Preencha todos os campos!", Snackbar.LENGTH_LONG);
                     snackbar.show();
@@ -136,12 +140,16 @@ public class CadastroAC extends AppCompatActivity {
     public void SalvarDadosUsuario(){
 
         String nome = Editnome.getText().toString();
+        String sobrenome = editSobrenome.getText().toString();
+        String idade = textIdade.getText().toString();
 
         Boolean isfuncionario = false;
 
         String getuID = EditEmailc.getText().toString().replaceAll("\\p{Punct}", "");
 
         referencia.child(getuID).child("nome").setValue(nome);
+        referencia.child(getuID).child("sobrenome").setValue(sobrenome);
+        referencia.child(getuID).child("Idade").setValue(idade);
         referencia.child(getuID).child("É funcionario").setValue(isfuncionario);
 
 
